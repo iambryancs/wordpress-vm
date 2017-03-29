@@ -26,7 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   if Vagrant.has_plugin?('vagrant-hostsupdater')
-    config.hostsupdater.aliases = conf["vm_hostname"]
+    config.hostsupdater.aliases = %W{www.#{conf["vm_hostname"]}}
   end
 
   config.vm.provision :ansible_local do |ansible|
