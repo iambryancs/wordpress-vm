@@ -1,0 +1,12 @@
+# /roles/extra/vars/RedHat.yml
+---
+apache_user: 'apache'
+php_packages:
+  - php56w
+  - php56w-cli
+  - php56w-common
+  - php56w-dom
+  - php56w-gd
+  - php56w-mysql
+  - php56w-opcache
+  - php56w-pecl-apcu

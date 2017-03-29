@@ -1,0 +1,13 @@
+# /roles/extra/vars/Debian.yml
+---
+apache_user: 'www-data'
+# Set this to no when using other PPA
+php_install_recommends: no
+php_packages:
+  - libapache2-mod-php5.6
+  - php5.6
+  - php5.6-cli
+  - php5.6-common
+  - php5.6-dom
+  - php5.6-gd
+  - php5.6-mysql

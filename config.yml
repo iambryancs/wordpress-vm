@@ -1,0 +1,15 @@
+---
+# Guest machine config
+guest_vagrant_dir: /var/www/vagrant
+
+# VM general config
+vm_box: geerlingguy/centos6
+vm_ip: 10.0.0.10
+vm_name: wordpressvm
+vm_hostname: wordpress.vm
+
+# WordPress config
+wp_project_dir_name: wordpress
+wp_db_name: wordpress
+wp_db_user: wordpress
+wp_db_pass: wordpress

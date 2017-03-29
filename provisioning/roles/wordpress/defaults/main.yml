@@ -1,0 +1,21 @@
+---
+# Define WordPress install path
+wp_install_path: "{{ guest_vagrant_dir }}/{{  wp_project_dir_name }}"
+
+# Define WordPress version, see release archive for more info https://wordpress.org/download/release-archive/
+wp_version: latest
+wp_db_name: wordpress
+wp_db_user: wordpress
+wp_db_pass: wordpress
+wp_url: http://localhost
+wp_site_title: WordPress Site
+wp_admin_user: admin
+wp_admin_pass: admin
+wp_admin_email: email@domain.com
+
+# Define list of plugins to be installed
+wp_plugins:
+  - { name: akismet, version: 3.3, install: true }
+
+# Deletes the pre-installed Hello Dolly plugin when set to true
+delete_hello_dolly: true

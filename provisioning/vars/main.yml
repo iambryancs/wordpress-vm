@@ -1,0 +1,29 @@
+---
+# MySQL related config
+mysql_root_password: root
+mysql_slow_query_log_enabled: true
+mysql_slow_query_time: 2
+mysql_wait_timeout: 300
+mysql_databases:
+  - name: "{{ wp_db_name}}"
+    encoding: latin1
+    collation: latin1_general_ci
+mysql_users:
+  - name: "{{ wp_db_user }}"
+    host: "%"
+    password: "{{ wp_db_pass }}"
+    priv: "{{ wp_db_name}}.*:ALL"
+
+# Apache related config
+apache_enablerepo: "epel"
+apache_packages_state: latest
+apache_vhosts:
+  - servername: "{{ vm_hostname }}"
+    serveralias: "{{ vm_hostname }}"
+    documentroot: "{{ guest_vagrant_dir }}/{{ wp_project_dir_name }}"
+
+# PHP related config
+php_enablerepo: "epel"
+
+# WordPress related config
+wp_url: "http://{{ vm_hostname }}"

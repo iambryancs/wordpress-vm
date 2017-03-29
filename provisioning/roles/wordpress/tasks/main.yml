@@ -1,0 +1,22 @@
+---
+- name: Download WordPress
+  command: wp core download --path={{ wp_install_path }} --version={{ wp_version }} --allow-root
+  args:
+    creates: '{{ wp_install_path }}'
+
+- name: Generate wp-config.php file
+  command: wp core config --path={{ wp_install_path }} --dbname={{ wp_db_name }} --dbuser={{ wp_db_user }} --dbpass={{ wp_db_pass}} --allow-root
+  args:
+    creates: '{{ wp_install_path }}/wp-config.php'
+
+- name: Install the WordPress database
+  command: wp core install --path={{ wp_install_path }} --url={{ wp_url }} --title='{{ wp_site_title}}' --admin_user={{ wp_admin_user }} --admin_password={{ wp_admin_pass }} --admin_email={{ wp_admin_email }} --allow-root
+
+- name: Install WordPress plugins
+  command: wp plugin install --path={{ wp_install_path }} {{ item.name }} --version={{ item.version }} --force --allow-root
+  when: item.install
+  with_items: '{{ wp_plugins }}'
+
+- name: Delete Hello Dolly plugin
+  command: wp plugin delete hello --path={{ wp_install_path }} --allow-root
+  when: delete_hello_dolly
