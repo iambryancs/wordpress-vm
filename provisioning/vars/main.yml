@@ -17,6 +17,8 @@ mysql_users:
 # Apache related config
 apache_enablerepo: "epel"
 apache_packages_state: latest
+apache_create_vhosts: true
+apache_remove_default_vhost: true
 apache_vhosts:
   - servername: "{{ vm_hostname }}"
     serveralias: "{{ vm_hostname }}"
