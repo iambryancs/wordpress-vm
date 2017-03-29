@@ -1,6 +1,6 @@
 ## WordPress VM with LAMP Stack via Ansible on Vagrant
 
-Setup LAMP Stack with RHEL/CentOS or Debian/Ubuntu using Ansible as provisioner on Vagrant
+Setup WordPress VM with LAMP Stack on RHEL/CentOS or Debian/Ubuntu using Ansible as provisioner on Vagrant
 
 ## Requirements
 1. Make sure your machine supports Virtualization
@@ -12,44 +12,55 @@ Setup LAMP Stack with RHEL/CentOS or Debian/Ubuntu using Ansible as provisioner 
 TL;DR
 1. Clone this repo to your machine
 2. `cd` into this repo and run `vagrant up`
+3. Update hosts file and add `10.0.0.10 wordpress.vm`
+4. Access project at `http://wordpress.vm`
 
 To start using wordpress-vm, do the following:
 1. Clone this repo to a preferred directory in your machine
 2. `cd` into this repo and update `config.yml` according to your preferences
+
+   A few variables you can play in `config.yml`
+   - `vm_box` - You can try any distro verions under RHEL or Debian (e.g. `ubuntu/trusty64`, `geerlingguy/centos7`)
+   - `vm_ip` - Change to any private IP you prefer or leave as is
+   - `vm_name` - Set your VM's name
+   - `vm_hostname` - Set the hostname of your VM. This is also used as WordPress' base url.
+   - `wp_project_dir_name` - Directory name where wordpress is installed
+   - `wp_db_name` - Database name used by WordPress and provisioned by `geerlingguy.mysql` ansible role.
+   - `wp_db_user` - Database user used by WordPress and provisioned by `geerlingguy.mysql` ansible role.
+   - `wp_db_pass` - Database password used by WordPress and provisioned by `geerlingguy.mysql` ansible role.
 3. Run `vagrant up`
+4. Update your hosts file
 
-## Document Root
-The folder `html` is where you should place your PHP project. It is mapped to `/var/www/vagrant/html` directory of the VM and is being used by a VirtualHost with a servername `local.dev`.
+   In order for your project to be accessible, you need to edit your hosts file and add the following:
+   ```
+   10.0.0.10 wordpress.vm
+   ```
+   The IP should correspong to the `vm_ip` provided on `config.yml` in case you modify it.
 
-## Hosts Resolution
-In order for your project to be accessible, you need to edit your hosts file and add the following:
-```
-10.0.0.10 wordpress.vm
-```
-The IP should correspong to the `vm_ip` provided on `config.yml` in case you modify it.
+   - Editing hosts file on Windows
+   
+     For Windows host machine, you can edit your hosts file by doing the ff:
+     1. Run cmd as administrator > search for cmd in start menu > right click > run as administrator
+     2. Once in cmd, type and enter `notepad drivers\etc\hosts`
+     3. Add `10.0.0.10 wordpress.vm` and save
 
-### Editing hosts file on Windows
-For Windows host machine, you can edit your hosts file by doing the ff:
-1. Run cmd as administrator
-  * Search for cmd in start menu > right click > run as administrator
-2. Once in cmd, enter the ff:
-  `notepad drivers\etc\hosts`
-3. Add the lines above and save
+   - Editing hosts file on Linux
+   
+     For Linux host machine, you can edit your hosts file by doing the ff:
+     1. Launch terminal
+     2. Once in terminal, type and enter `sudo vi /etc/hosts`
+     3. Add `10.0.0.10 wordpress.vm` and save
 
-### Editing hosts file on Linux
-For Linux host machine, you can edit your hosts file by doing the ff:
-1. Launch terminal
-2. Once in terminal, enter the ff:
-  `sudo vi /etc/hosts`
-3. Add the lines above and save
+   - Automating edit on hosts file
+   
+     If you want to automate the editing of your hosts file, install the `vagrant-hostsupdater` plugin by running
+     ```
+     vagrant plugin install vagrant-hostsupdater
+     ```
+5. Once you've updated your hosts file, you can now access your project at http://wordpress.vm
 
-### Automating edit on hosts file
-If you want to automate the editing of your hosts file, install the `vagrant-hostsupdater` plugin by running
-```
-vagrant plugin install vagrant-hostsupdater
-```
-
-Once you've updated your hosts file, you can now access your project at http://wordpress.vm
+## WordPress Admin
+The default `username` and `password` for `wp-admin` is `admin` for both.
 
 ## Ansible Roles
 * [ansible-role-repo-epel](https://github.com/geerlingguy/ansible-role-repo-epel) - Installs [EPEL](https://fedoraproject.org/wiki/EPEL) repo
@@ -61,6 +72,10 @@ Once you've updated your hosts file, you can now access your project at http://w
 * config-repos - Install repos based on distribution
 * [sbaerlocher.wp-cli](https://github.com/sbaerlocher/ansible.wp-cli) - Install [wp-cli](http://wp-cli.org/)
 * wordpress - Configure and Install WordPress core and plugins
+
+## To do
+1. Make VM more customizable through config (e.g. cpu, memory)
+2. Add test suite for Travis-CI
 
 ## License
 MIT
