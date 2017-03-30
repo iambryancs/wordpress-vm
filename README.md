@@ -1,5 +1,7 @@
 ## WordPress VM with LAMP Stack via Ansible on Vagrant
 
+[![Build Status](https://travis-ci.org/iambryancs/wordpress-vm.svg?branch=master)](https://travis-ci.org/iambryancs/wordpress-vm)
+
 Setup WordPress VM with LAMP Stack on RHEL/CentOS or Debian/Ubuntu using Ansible as provisioner on Vagrant
 
 ## Requirements
