@@ -78,8 +78,8 @@ The default `username` and `password` for `wp-admin` is `admin` for both.
 * wordpress - Configure and Install WordPress core and plugins
 
 ## To do
-1. Make VM more customizable through config (e.g. cpu, memory)
-2. Add test suite for Travis-CI
+- [ ] Make VM more customizable through config (e.g. cpu, memory)
+- [x] Add test suite for Travis-CI
 
 ## License
 MIT
