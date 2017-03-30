@@ -35,7 +35,7 @@ To start using wordpress-vm, do the following:
    ```
    10.0.0.10 wordpress.vm
    ```
-   The IP should correspong to the `vm_ip` provided on `config.yml` in case you modify it.
+   The IP should correspond to the `vm_ip` provided on `config.yml` in case you modify it.
 
    - Editing hosts file on Windows
    
@@ -57,6 +57,8 @@ To start using wordpress-vm, do the following:
      ```
      vagrant plugin install vagrant-hostsupdater
      ```
+     You will need to run your CMD as admin on Windows when doing this.
+     
 5. Once you've updated your hosts file, you can now access your project at http://wordpress.vm
 
 ## WordPress Admin
