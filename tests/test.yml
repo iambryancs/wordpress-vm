@@ -10,3 +10,9 @@
         force: yes
       when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '14.04'
       changed_when: false
+
+    - name: Install curl for Ubuntu
+      apt:
+        name: curl
+        state: present
+      when: ansible_distribution == 'Ubuntu'
